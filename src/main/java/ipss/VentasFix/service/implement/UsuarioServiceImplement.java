@@ -5,7 +5,6 @@ import ipss.VentasFix.dto.UsuarioResponseDto;
 import ipss.VentasFix.entity.Usuario;
 import ipss.VentasFix.mapper.UsuarioMapper;
 import ipss.VentasFix.repository.UsuarioRepository;
-import ipss.VentasFix.service.ClienteService;
 import ipss.VentasFix.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ import java.util.List;
 public class UsuarioServiceImplement implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UsuarioService usuarioService;
+
 
     @Override
     public List<UsuarioResponseDto> listarTodos() {
