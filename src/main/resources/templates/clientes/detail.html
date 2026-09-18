@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('clientes')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Detalle Cliente</h1>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <p><strong>RUT Empresa:</strong> <span th:text="${cliente.rutEmpresa}"></span></p>
+                <p><strong>Razón Social:</strong> <span th:text="${cliente.razonSocial}"></span></p>
+                <p><strong>Rubro:</strong> <span th:text="${cliente.rubro}"></span></p>
+                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}"></span></p>
+                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}"></span></p>
+                <p><strong>Nombre contacto:</strong> <span th:text="${cliente.nombreContacto}"></span></p>
+                <p><strong>Email contacto:</strong> <span th:text="${cliente.emailContacto}"></span></p>
+                <a th:href="@{/clientes}" class="btn ghost">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

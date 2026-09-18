@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="sidebar(active)" class="sidebar">
+    <div class="brand">Ventas<span>Fix</span></div>
+    <nav class="nav">
+        <a th:href="@{/dashboard}" th:classappend="${active == 'dashboard'} ? 'active'">Dashboard</a>
+        <a th:href="@{/usuarios}" th:classappend="${active == 'usuarios'} ? 'active'">Usuarios</a>
+        <a th:href="@{/productos}" th:classappend="${active == 'productos'} ? 'active'">Productos</a>
+        <a th:href="@{/clientes}" th:classappend="${active == 'clientes'} ? 'active'">Clientes</a>
+    </nav>
+</div>
+</body>
+</html>

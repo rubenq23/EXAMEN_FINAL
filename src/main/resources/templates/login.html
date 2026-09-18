@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Acceso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="login-screen">
+    <div class="login-card">
+        <div class="brand">Ventas<span>Fix</span></div>
+        <p class="subtitle">Acceso para trabajadores</p>
+
+        <form th:action="@{/login}" method="post">
+            <div class="field">
+                <label for="username">Correo corporativo</label>
+                <input type="email" id="username" name="username" placeholder="nombre@ventasfix.cl" required autofocus>
+            </div>
+            <div class="field">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <p class="error-text" th:if="${param.error}">Correo o contraseña incorrectos.</p>
+            <p class="error-text" th:if="${param.logout}" style="color: var(--lime);">Sesión cerrada correctamente.</p>
+
+            <button type="submit" class="btn">Ingresar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

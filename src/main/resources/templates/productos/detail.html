@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Producto</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('productos')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Detalle Producto</h1>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <p><strong>SKU:</strong> <span th:text="${producto.sku}"></span></p>
+                <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
+                <p><strong>Descripción corta:</strong> <span th:text="${producto.descripcionCorta}"></span></p>
+                <p><strong>Descripción larga:</strong> <span th:text="${producto.descripcionLarga}"></span></p>
+                <p><strong>Precio neto:</strong> <span th:text="${producto.precioNeto}"></span></p>
+                <p><strong>Precio venta:</strong> <span th:text="${producto.precioVenta}"></span></p>
+                <p><strong>Stock actual:</strong> <span th:text="${producto.stockActual}"></span></p>
+                <p><strong>Stock mínimo:</strong> <span th:text="${producto.stockMinimo}"></span></p>
+                <p><strong>Stock bajo:</strong> <span th:text="${producto.stockBajo}"></span></p>
+                <p><strong>Stock alto:</strong> <span th:text="${producto.stockAlto}"></span></p>
+                <p><strong>Imagen:</strong> <img th:src="@{'/images/' + ${producto.imagen}}" alt="Imagen producto" style="max-width:200px;"></p>
+                <a th:href="@{/productos}" class="btn ghost">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

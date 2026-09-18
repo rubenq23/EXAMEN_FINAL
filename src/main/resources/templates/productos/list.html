@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Productos</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('productos')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Productos</h1>
+            <div class="user-chip">
+                <span th:text="${#authentication.name}"></span>
+                <form th:action="@{/logout}" method="post"><button>Salir</button></form>
+            </div>
+        </div>
+
+        <div class="content">
+            <a th:href="@{/productos/nuevo}" class="btn">+ Nuevo producto</a>
+            <div class="card" style="padding:0;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Nombre</th>
+                        <th>Precio Neto</th>
+                        <th>Stock</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p : ${productos}">
+                        <td th:text="${p.sku}">SKU001</td>
+                        <td th:text="${p.nombre}">Producto</td>
+                        <td th:text="${p.precioNeto}">$0</td>
+                        <td th:text="${p.stockActual}">0</td>
+                        <td style="text-align:right;">
+                            <a th:href="@{/productos/{id}(id=${p.id})}" class="btn ghost">Ver</a>
+                            <a th:href="@{/productos/{id}/editar(id=${p.id})}" class="btn ghost">Editar</a>
+                            <form th:action="@{/productos/{id}/eliminar(id=${p.id})}" method="post"
+                                  onsubmit="return confirm('¿Eliminar este producto?');">
+                                <button class="btn danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(productos)}">
+                        <td colspan="5" style="text-align:center; color:var(--text-muted); padding:32px;">
+                            No hay productos registrados todavía.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

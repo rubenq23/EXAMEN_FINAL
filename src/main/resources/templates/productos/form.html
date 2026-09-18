@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${modo == 'crear'} ? 'VentasFix — Nuevo producto' : 'VentasFix — Editar producto'">VentasFix</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('productos')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1 th:text="${modo == 'crear'} ? 'Nuevo producto' : 'Editar producto'">Producto</h1>
+        </div>
+
+        <div class="content" style="max-width:600px;">
+            <div class="card">
+                <form th:action="${modo == 'crear'} ? @{/productos} : @{/productos/{id}(id=${id})}"
+                      th:object="${producto}" method="post">
+
+                    <div class="field">
+                        <label for="sku">SKU</label>
+                        <input type="text" id="sku" th:field="*{sku}">
+                    </div>
+
+                    <div class="field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" th:field="*{nombre}">
+                    </div>
+
+                    <div class="field">
+                        <label for="descripcionCorta">Descripción corta</label>
+                        <input type="text" id="descripcionCorta" th:field="*{descripcionCorta}">
+                    </div>
+
+                    <div class="field">
+                        <label for="descripcionLarga">Descripción larga</label>
+                        <textarea id="descripcionLarga" th:field="*{descripcionLarga}"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="imagen">Imagen</label>
+                        <input type="text" id="imagen" th:field="*{imagen}" placeholder="archivo.jpg">
+                    </div>
+
+                    <div class="field">
+                        <label for="precioNeto">Precio neto</label>
+                        <input type="number" step="0.01" id="precioNeto" th:field="*{precioNeto}">
+                    </div>
+
+                    <div class="field">
+                        <label for="stockActual">Stock actual</label>
+                        <input type="number" id="stockActual" th:field="*{stockActual}">
+                    </div>
+
+                    <div class="field">
+                        <label for="stockMinimo">Stock mínimo</label>
+                        <input type="number" id="stockMinimo" th:field="*{stockMinimo}">
+                    </div>
+
+                    <div class="field">
+                        <label for="stockBajo">Stock bajo</label>
+                        <input type="number" id="stockBajo" th:field="*{stockBajo}">
+                    </div>
+
+                    <div class="field">
+                        <label for="stockAlto">Stock alto</label>
+                        <input type="number" id="stockAlto" th:field="*{stockAlto}">
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-top:8px;">
+                        <button type="submit" class="btn"
+                                th:text="${modo == 'crear'} ? 'Crear producto' : 'Guardar cambios'">Guardar</button>
+                        <a th:href="@{/productos}" class="btn ghost">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

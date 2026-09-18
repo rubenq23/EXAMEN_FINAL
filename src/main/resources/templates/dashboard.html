@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('dashboard')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <div class="user-chip">
+                <span th:text="${#authentication.name}">usuario@ventasfix.cl</span>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Salir</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="stat-grid">
+                <div class="card">
+                    <div class="stat-label">Usuarios del sistema</div>
+                    <div class="stat-value cyan" th:text="${totalUsuarios}">0</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Productos</div>
+                    <div class="stat-value lime" th:text="${totalProductos}">0</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Clientes</div>
+                    <div class="stat-value magenta" th:text="${totalClientes}">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

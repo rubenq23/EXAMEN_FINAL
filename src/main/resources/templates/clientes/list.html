@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('clientes')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Clientes</h1>
+            <div class="user-chip">
+                <span th:text="${#authentication.name}"></span>
+                <form th:action="@{/logout}" method="post"><button>Salir</button></form>
+            </div>
+        </div>
+
+        <div class="content">
+            <a th:href="@{/clientes/nuevo}" class="btn">+ Nuevo cliente</a>
+            <div class="card" style="padding:0;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>RUT Empresa</th>
+                        <th>Razón Social</th>
+                        <th>Rubro</th>
+                        <th>Contacto</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c : ${clientes}">
+                        <td th:text="${c.rutEmpresa}">11.111.111-1</td>
+                        <td th:text="${c.razonSocial}">Empresa S.A.</td>
+                        <td th:text="${c.rubro}">Comercio</td>
+                        <td th:text="${c.nombreContacto}">Juan Pérez</td>
+                        <td th:text="${c.emailContacto}">correo@empresa.cl</td>
+                        <td style="text-align:right;">
+                            <a th:href="@{/clientes/{id}(id=${c.id})}" class="btn ghost">Ver</a>
+                            <a th:href="@{/clientes/{id}/editar(id=${c.id})}" class="btn ghost">Editar</a>
+                            <form th:action="@{/clientes/{id}/eliminar(id=${c.id})}" method="post"
+                                  onsubmit="return confirm('¿Eliminar este cliente?');">
+                                <button class="btn danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(clientes)}">
+                        <td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">
+                            No hay clientes registrados todavía.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

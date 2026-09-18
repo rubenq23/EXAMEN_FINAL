@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VentasFix — Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/neon.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{fragments/nav :: sidebar('dashboard')}"></div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <div class="user-chip">
+                <span th:text="${#authentication.name}">usuario@ventasfix.cl</span>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Salir</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+
+                <!-- Usuarios -->
+                <div class="card neon-card">
+                    <h2>Usuarios registrados</h2>
+                    <p class="big-counter" th:text="${totalUsuarios}">0</p>
+                    <a th:href="@{/usuarios}" class="btn ghost">Ver usuarios</a>
+                </div>
+
+                <!-- Productos -->
+                <div class="card neon-card">
+                    <h2>Productos registrados</h2>
+                    <p class="big-counter" th:text="${totalProductos}">0</p>
+                    <a th:href="@{/productos}" class="btn ghost">Ver productos</a>
+                </div>
+
+                <!-- Clientes -->
+                <div class="card neon-card">
+                    <h2>Clientes registrados</h2>
+                    <p class="big-counter" th:text="${totalClientes}">0</p>
+                    <a th:href="@{/clientes}" class="btn ghost">Ver clientes</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
